@@ -1,53 +1,52 @@
 // variables
 let count = 9;
-let movies = ["Sholay", "DDLJ", "Fanna", "Satya", "13 Juror"];
+let movies = ["DDLJ", "Jurassic Park", "Satya", "Gangs", "Godfather"];
+let newMovie = "";
+// elements
+const countEl = document.getElementById("count");
+const addBtnEl = document.getElementById("add__btn");
+const subBtnEl = document.getElementById("sub__btn");
+const moviesEl = document.getElementById("movies");
+const inputMovieEl = document.querySelector(".input__movie");
 
-//Elements
-const counter = document.getElementById("counter");
-const addButton = document.getElementById("add-btn");
-const subButton = document.getElementById("sub-btn");
-const moviesel = document.getElementById("movies");
-const inputEl = document.querySelector(".input-movie");
-
-//Actions
-const decrement = () => {
-  count--;
-  counter.textContent = count;
-};
-const increment = () => {
+// actions
+const incrementCount = () => {
   count++;
-  counter.textContent = count;
+  countEl.innerHTML = count;
 };
-
-const addMovie = () => {
-  let movie = inputEl.value.trim();
-  if (movie.length > 0) {
-    movies.push(movie);
-  }
-  displayAllMovies();
-  inputEl.value = "";
-};
-
+function decrementCount() {
+  count--;
+  countEl.innerHTML = count;
+}
 const displayAllMovies = () => {
-  moviesel.innerHTML = "";
-  movies.map((movie, idx) => {
-    const movieEl = document.createElement("li");
-    movieEl.textContent = movie;
-    moviesel.appendChild(movieEl);
+  moviesEl.innerHTML = "";
+  inputMovieEl.value = newMovie;
+  movies.map((movie) => {
+    let singleMovieEl = document.createElement("li");
+    singleMovieEl.textContent = movie;
+    moviesEl.appendChild(singleMovieEl);
   });
 };
+const handleInputEvent = (e) => {
+  if (e.key == "Enter") {
+    addMovie(newMovie);
+  } else {
+    newMovie = e.target.value;
+  }
+};
 
-document.addEventListener("DOMContentLoaded", function () {
-  counter.textContent = count;
+function addMovie(newMovie) {
+  movies.push(newMovie);
+  displayAllMovies();
+  newMovie = "";
+  inputMovieEl.value = newMovie;
+}
+
+//events
+document.addEventListener("DOMContentLoaded", () => {
+  countEl.textContent = count;
   displayAllMovies();
 });
-
-addButton.addEventListener("click", increment);
-subButton.addEventListener("click", decrement);
-
-inputEl.addEventListener("keydown", (event) => {
-  if (event.key == "Enter") {
-    event.preventDefault();
-    addMovie();
-  }
-});
+addBtnEl.addEventListener("click", incrementCount);
+subBtnEl.addEventListener("click", decrementCount);
+inputMovieEl.addEventListener("keyup", handleInputEvent);

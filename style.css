@@ -1,24 +1,23 @@
 body {
-  background-color: rgb(75, 71, 71);
+  background: rgb(75, 71, 71);
   color: white;
 }
 
-.counter-container {
+.counter__container {
   margin: 100px;
-}
-input {
-  margin-top: 10px;
-  margin-left: 100px;
-  font-size: 20px;
-  color: green;
-}
-ul {
-  margin-left: 100px;
 }
 .btn {
   width: 50px;
 }
-
-#add-movie {
-  margin: 1rem;
+input {
+  margin-left: 100px;
+  padding: 5px;
+  color: green;
+}
+ul {
+  margin-left: 4rem;
+}
+li {
+  list-style: none;
+  margin-bottom: 1rem;
 }
